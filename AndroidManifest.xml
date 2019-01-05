@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.hungry.slock"
+      android:versionCode="7"
+      android:versionName="7.0">
+    <uses-sdk android:minSdkVersion="18"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/> 
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/> 
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name="com.hungry.slock.MainActivity"
+                  android:label="@string/app_name"
+                  android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name="com.hungry.slock.SLockService"></service>
+         <service
+            android:name="com.hungry.slock.NotificationMonitor"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+         <receiver android:name=".BroadcastToStart">  
+                <intent-filter>  
+                    <action android:name="android.intent.action.BOOT_COMPLETED"></action>  
+                    <category android:name="android.intent.category.LAUNCHER" />  
+                </intent-filter>  
+            </receiver>  
+    </application>
+</manifest> 
